@@ -12,11 +12,11 @@ LIBS= -L/usr/realtime/lib -pthread -lrt
 all: novatelstore novatelclient doc
 
 novatelstore: novatelstore.c novatel.h shmdef.h novatel.o
-	gcc -o novatelstore $(INCL) $(CFLAGS) -pthread -lrt novatel.o novatelstore.c 
+	gcc -o novatelstore $(INCL) $(CFLAGS) -pthread novatel.o novatelstore.c -lrt
 
 
 novatelclient: novatelclient.c novatel.h shmdef.h 
-	gcc -o novatelclient $(INCL) $(CFLAGS) -pthread -lrt novatelclient.c
+	gcc -o novatelclient $(INCL) $(CFLAGS) -pthread novatelclient.c -lrt
 
 doc: novatelstore.c novatel.h shmdef.h
 	doxygen
@@ -29,4 +29,6 @@ mac: novatel.o novatelstore.c novatel.h shmdef.h
 	
 
 clean:
-	-rm *~ *.bak *.o novatelstore
+	-rm *~ *.bak *.o novatelstore novatelstore_mac
+	
+
